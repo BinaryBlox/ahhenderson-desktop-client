@@ -3,7 +3,6 @@ package client.startup.mvc.view.supportClasses
 {
 
 	import flash.net.registerClassAlias;
-	
 	import mx.collections.ArrayCollection;
 	import mx.collections.ArrayList;
 	import mx.messaging.config.ConfigMap;
@@ -15,27 +14,23 @@ package client.startup.mvc.view.supportClasses
 	import mx.messaging.messages.RemotingMessage;
 	import mx.utils.ObjectProxy;
 	import mx.utils.RpcClassAliasInitializer;
-	
 	import ahhenderson.core.managers.FacadeServiceManager;
 	import ahhenderson.core.mvc.patterns.facade.FacadeMessageFilter;
-	
 	import client.constants.Client_NotificationConstants;
-	import feathers.extension.ahhenderson.data.service.helpers.DataServiceFacadeHelper;
 	import client.startup.mvc.controller.StartupCommand;
-	
 	import feathers.extension.ahhenderson.controls.core.FeathersRootScreen;
- 
+	import feathers.extension.ahhenderson.data.service.helpers.DS_FacadeHelper;
+
 
 	public class AbstractRootScreen extends FeathersRootScreen {
 		public function AbstractRootScreen() {
 
-			super(); 
+			super();
 
-		} 
- 
+		}
+
 		override protected function registerClassAliases():void {
 
-			 
 			// Flex
 			registerClassAlias( "flex.messaging.messages.RemotingMessage", RemotingMessage );
 			registerClassAlias( "flex.messaging.messages.RemotingMessage", RemotingMessage );
@@ -48,44 +43,28 @@ package client.startup.mvc.view.supportClasses
 			registerClassAlias( "flex.messaging.config.ConfigMap", ConfigMap );
 			registerClassAlias( "flex.messaging.io.ArrayCollection", ArrayCollection );
 			registerClassAlias( "flex.messaging.io.ObjectProxy", ObjectProxy );
-			
+
 			// Pub/Sub RPC
 			registerClassAlias( "flex.messaging.io.ArrayList", ArrayList );
 			registerClassAlias( "flex.messaging.config.ConfigMap", ConfigMap );
 			registerClassAlias( "flex.messaging.io.ArrayCollection", ArrayCollection );
 			registerClassAlias( "flex.messaging.io.ObjectProxy", ObjectProxy );
 			RpcClassAliasInitializer.registerClassAliases();
-			
-			 
-			
+
 			// Scope instance
 			FacadeServiceManager;
-			
+
 		}
- 
-		override protected function registerStartupCommand():void{
-			
-			
-			// Register using API helper since mediator is of type API_Mediator 
-			DataServiceFacadeHelper.registerCommand(new StartupCommand(Client_NotificationConstants.N_CMD_STARTUP));
-		}
-		
+
 		override protected function registerRootMediator():void {
-			
-			this.registerMediator(new AbstractRootScreenMediator(null, this), 
-				new FacadeMessageFilter([Client_NotificationConstants.NGRP_CLIENT_GLOBAL]));
+
+			this.registerMediator( new AbstractRootScreenMediator( null, this ),
+																   new FacadeMessageFilter([ Client_NotificationConstants.NGRP_CLIENT_GLOBAL ]));
 		}
 
-
-		override protected function showDefaultScreen():void {
-
-			 
-		} 
-		
-		override protected function registerScreenViews():void {
-			
-			
+		override protected function registerStartupCommand():void {
+ 
+			DS_FacadeHelper.registerCommand( new StartupCommand( Client_NotificationConstants.N_CMD_STARTUP ));
 		}
-		 
 	}
 }
