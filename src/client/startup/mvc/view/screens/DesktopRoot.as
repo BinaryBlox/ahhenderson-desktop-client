@@ -6,26 +6,20 @@ package client.startup.mvc.view.screens
 	import client.project.constants.Project_ScreenNameConstants;
 	import client.project.mvc.view.screens.HelloWorldScreen;
 	import client.startup.mvc.view.screens.drawers.LeftMenuDrawerView;
-	import client.startup.mvc.view.supportClasses.AbstractRootScreen;
+	import client.startup.mvc.view.supportClasses.AbstractRoot;
 	import feathers.controls.Drawers;
 	import feathers.themes.DesktopFlatTheme;
 	import starling.events.Event;
 
 
-	public class DesktopRootScreen extends AbstractRootScreen {
+	public class DesktopRoot extends AbstractRoot {
 
-		public function DesktopRootScreen() {
+		public function DesktopRoot() {
 
 			super();
 
 		}
-
-		override public function showDefaultScreen():void {
-
-			this.fmgr.navigation.showScreen( Project_ScreenNameConstants.HELLO_WORLD );
-
-		}
-
+ 
 		override protected function initializeDrawers( drawers:Drawers ):void {
 
 			var leftMenu:LeftMenuDrawerView = new LeftMenuDrawerView( "Menu" );

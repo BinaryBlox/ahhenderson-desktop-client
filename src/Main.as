@@ -2,10 +2,11 @@ package
 {
 	import flash.display3D.Context3DProfile;
 	
-	import feathers.extension.ahhenderson.data.service.helpers.DS_Helper;
-	import client.startup.mvc.view.screens.DesktopRootScreen;
+	import client.project.constants.Project_ScreenNameConstants;
+	import client.startup.mvc.view.screens.DesktopRoot;
 	
 	import feathers.extension.ahhenderson.controls.core.FeathersApplication;
+	import feathers.extension.ahhenderson.data.service.helpers.DS_Helper;
 	import feathers.extension.ahhenderson.managers.dependency.themeManager.interfaces.IManagedTheme;
 	import feathers.themes.DesktopFlatTheme;
 	
@@ -21,9 +22,9 @@ package
 			
 		}
 		
-		override protected function rootScreen():Class{
+		override protected function rootContainer():Class{
 			
-			return DesktopRootScreen; 
+			return DesktopRoot; 
 		}
 		
 		override protected function determineScreenResolution():void{
@@ -32,6 +33,10 @@ package
 			//this.resolutionConfig.set(null, null, OSList.MAC); 
 		}
 		
+		override protected function defaultScreenId():String {
+			
+			return Project_ScreenNameConstants.HELLO_WORLD; 
+		} 
 		
 		override protected function defaultTheme():IManagedTheme{
 			
@@ -51,14 +56,19 @@ package
 			_renderMode = "auto";
 			_defaultProfile=Context3DProfile.BASELINE_EXTENDED;
 			
-			// Default splash images (Not using right now
-			/*_splashImageNameDefault_Portrait_2x ="Default-Portrait@2x.png";
-			_splashImageNameDefault_Landscape_2x ="Default-Landscape@2x.png";
-			_splashImageNameDefault_Portrait ="Default-Portrait.png";
-			_splashImageNameDefault_Landscape ="Default-Landscape.png";
-			_splashImageNameDefault ="Default.png";
-			_splashImageNameDefault_2x ="Default@2x.png";
-			_splashImageNameDefault_568h_2x ="Default-568h@2x.png";*/
+			
+			/*********************************************************************************************************************************************************************************
+			 * Default splash images can be specified with example below:	 
+			 *  
+			 * _splashImageNameDefault_Portrait_2x ="Default-Portrait@2x.png";
+			 * _splashImageNameDefault_Landscape_2x ="Default-Landscape@2x.png";
+			 * _splashImageNameDefault_Portrait ="Default-Portrait.png";
+			 * _splashImageNameDefault_Landscape ="Default-Landscape.png";
+			 * _splashImageNameDefault ="Default.png";
+			 * _splashImageNameDefault_2x ="Default@2x.png";
+			 * _splashImageNameDefault_568h_2x ="Default-568h@2x.png";
+			 **********************************************************************************************************************************************************************************/
+			
 		}
 		
 	}
